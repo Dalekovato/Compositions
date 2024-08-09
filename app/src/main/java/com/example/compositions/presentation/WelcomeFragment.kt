@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.compositions.R
 import com.example.compositions.databinding.FragmentWelcomeBinding
-import com.example.compositions.presentation.ChooseLevelFragment
 
 class WelcomeFragment : Fragment() {
 
@@ -15,10 +15,7 @@ class WelcomeFragment : Fragment() {
     private val  binding: FragmentWelcomeBinding
             get() = _binding ?: throw RuntimeException("FragmentWelcomeBinding == null")
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,10 +37,7 @@ class WelcomeFragment : Fragment() {
     }
 
     private fun launchChooseLevelFragment(){
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container , ChooseLevelFragment.newInstance() )
-            .addToBackStack(null)
-            .commit()
+        findNavController().navigate(R.id.action_welcomeFragment_to_chooseLevelFragment)
     }
 
     override fun onDestroyView() {
